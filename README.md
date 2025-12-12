@@ -1,4 +1,4 @@
-# 🔍 ELK Stack Demo - Elasticsearch + Logstash + Kibana
+#  ELK Stack Demo - Elasticsearch + Logstash + Kibana
 
 > **Présenté par : Ines Tmimi**  
 > **Matière : Bases de données avancées**  
