@@ -1,0 +1,15 @@
+Elasticsearch_demo/
+├── logs/
+│   └── application.log
+├── logstash/
+│   ├── config/
+│   │   └── logstash.yml
+│   ├── pipeline/
+│       └── logstash.conf
+├── Elasticsearch_demo.iml
+├── README.md
+├── cleanup.sh
+├── demo.sh
+├── docker-compose.yml
+├── generate-logs.sh
+└── setup.sh
