@@ -20,17 +20,6 @@ MAGENTA='\033[0;35m'
 WHITE='\033[1;37m'
 NC='\033[0m'
 
-clear
-
-echo ""
-echo -e "${MAGENTA}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${MAGENTA}║                                                                    ║${NC}"
-echo -e "${MAGENTA}║         🚀 INSTALLATION ELK STACK - DÉMO COMPLÈTE 🚀               ║${NC}"
-echo -e "${MAGENTA}║                                                                    ║${NC}"
-echo -e "${MAGENTA}║         Elasticsearch + Logstash + Kibana                          ║${NC}"
-echo -e "${MAGENTA}║                                                                    ║${NC}"
-echo -e "${MAGENTA}╚════════════════════════════════════════════════════════════════════╝${NC}"
-echo ""
 
 # ─────────────────────────────────────────────────────────────────
 # ÉTAPE 1 : Vérification Docker
@@ -42,7 +31,7 @@ echo ""
 
 docker info > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo -e "${RED}  ❌ Docker n'est pas lancé !${NC}"
+    echo -e "${RED}   Docker n'est pas lancé !${NC}"
     echo -e "${RED}     → Lance Docker Desktop et réessaie.${NC}"
     exit 1
 fi
@@ -51,7 +40,7 @@ echo -e "${GREEN}  ✓ Docker est opérationnel${NC}"
 # Vérifier docker-compose
 docker-compose version > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo -e "${RED}  ❌ Docker Compose n'est pas installé !${NC}"
+    echo -e "${RED}   Docker Compose n'est pas installé !${NC}"
     exit 1
 fi
 echo -e "${GREEN}  ✓ Docker Compose est installé${NC}"
@@ -77,7 +66,7 @@ echo -e "${WHITE}  ÉTAPE 3/6 : Lancement du stack ELK${NC}"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 
-echo -e "${CYAN}  📦 Téléchargement des images Docker...${NC}"
+echo -e "${CYAN}   Téléchargement des images Docker...${NC}"
 echo -e "${CYAN}     (Cela peut prendre quelques minutes la première fois)${NC}"
 echo ""
 
@@ -95,7 +84,7 @@ echo -e "${WHITE}  ÉTAPE 4/6 : Attente d'Elasticsearch${NC}"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 
-echo -ne "${CYAN}  ⏳ Elasticsearch démarre"
+echo -ne "${CYAN}   Elasticsearch démarre"
 
 MAX_ATTEMPTS=60
 ATTEMPT=0
@@ -116,7 +105,7 @@ done
 
 if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
     echo ""
-    echo -e "${RED}  ❌ Elasticsearch ne répond pas.${NC}"
+    echo -e "${RED}   Elasticsearch ne répond pas.${NC}"
     echo -e "${RED}     Vérifie les logs : docker-compose logs elasticsearch${NC}"
     exit 1
 fi
@@ -130,7 +119,7 @@ echo -e "${WHITE}  ÉTAPE 5/6 : Attente de Kibana${NC}"
 echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 
-echo -ne "${CYAN}  ⏳ Kibana démarre"
+echo -ne "${CYAN}   Kibana démarre"
 
 ATTEMPT=0
 while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
@@ -149,7 +138,7 @@ done
 
 if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
     echo ""
-    echo -e "${YELLOW}  ⚠ Kibana prend du temps à démarrer.${NC}"
+    echo -e "${YELLOW}   Kibana prend du temps à démarrer.${NC}"
     echo -e "${YELLOW}    Attends encore 1-2 minutes puis ouvre http://localhost:5601${NC}"
 fi
 echo ""
@@ -163,7 +152,7 @@ echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━�
 echo ""
 
 # Attendre que Logstash soit prêt
-echo -e "${CYAN}  ⏳ Attente de Logstash...${NC}"
+echo -e "${CYAN}   Attente de Logstash...${NC}"
 sleep 15
 
 # Vérifier si les logs ont été traités
@@ -172,7 +161,7 @@ LOGS_COUNT=$(curl -s "localhost:9200/app-logs-*/_count" 2>/dev/null | grep -o '"
 if [ -n "$LOGS_COUNT" ] && [ "$LOGS_COUNT" -gt 0 ]; then
     echo -e "${GREEN}  ✓ $LOGS_COUNT logs traités par Logstash !${NC}"
 else
-    echo -e "${CYAN}  📥 Injection directe des logs dans Elasticsearch...${NC}"
+    echo -e "${CYAN}   Injection directe des logs dans Elasticsearch...${NC}"
     
     # Injection directe si Logstash n'a pas encore traité
     while IFS= read -r line; do
@@ -189,26 +178,9 @@ echo ""
 # ─────────────────────────────────────────────────────────────────
 # TERMINÉ !
 # ─────────────────────────────────────────────────────────────────
-echo ""
-echo -e "${GREEN}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║                                                                    ║${NC}"
-echo -e "${GREEN}║              ✅ ELK STACK PRÊT !                                   ║${NC}"
-echo -e "${GREEN}║                                                                    ║${NC}"
-echo -e "${GREEN}╠════════════════════════════════════════════════════════════════════╣${NC}"
-echo -e "${GREEN}║                                                                    ║${NC}"
-echo -e "${GREEN}║  🔍 Elasticsearch : http://localhost:9200                          ║${NC}"
-echo -e "${GREEN}║  📊 Kibana        : http://localhost:5601                          ║${NC}"
-echo -e "${GREEN}║  🔄 Logstash      : http://localhost:9600                          ║${NC}"
-echo -e "${GREEN}║                                                                    ║${NC}"
-echo -e "${GREEN}╠════════════════════════════════════════════════════════════════════╣${NC}"
-echo -e "${GREEN}║                                                                    ║${NC}"
-echo -e "${GREEN}║  📋 Prochaines étapes :                                            ║${NC}"
-echo -e "${GREEN}║     1. Ouvre Kibana : http://localhost:5601                        ║${NC}"
-echo -e "${GREEN}║     2. Va dans Menu ☰ → Stack Management → Data Views             ║${NC}"
-echo -e "${GREEN}║     3. Crée un Data View : app-logs-*                              ║${NC}"
-echo -e "${GREEN}║     4. Va dans Menu ☰ → Discover pour explorer                    ║${NC}"
-echo -e "${GREEN}║                                                                    ║${NC}"
-echo -e "${GREEN}║  🎬 Pour la démo : ./demo.sh                                       ║${NC}"
-echo -e "${GREEN}║                                                                    ║${NC}"
-echo -e "${GREEN}╚════════════════════════════════════════════════════════════════════╝${NC}"
-echo ""
+
+service: "payment-service" AND level: "ERROR"
+
+level: "ERROR"
+
+curl -s "localhost:9200/app-logs-*/_count"
