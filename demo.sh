@@ -274,9 +274,9 @@ pause
 # ═══════════════════════════════════════════════════════════════════════
 # PARTIE 8 : ALERTES DE SÉCURITÉ
 # ═══════════════════════════════════════════════════════════════════════
-section "8️⃣  SÉCURITÉ - Détection d'activité suspecte"
+section "8️  SÉCURITÉ - Détection d'activité suspecte"
 
-echo -e "${RED}  🔒 Recherche d'activités suspectes...${NC}"
+echo -e "${RED}   Recherche d'activités suspectes...${NC}"
 echo ""
 sleep 1
 
@@ -343,24 +343,7 @@ echo -e "${GREEN}╚════════════════════
 echo ""
 echo -e "${WHITE}${BOLD}   RÉCAPITULATIF - Ce que nous avons vu :${NC}"
 echo ""
-echo -e "${CYAN}  ┌────────────────────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}  │                                                                │${NC}"
-echo -e "${CYAN}  │   LOGSTASH                                                   │${NC}"
-echo -e "${CYAN}  │     • Collecte les logs depuis fichiers/HTTP/TCP              │${NC}"
-echo -e "${CYAN}  │     • Transforme : parse dates, ajoute tags, classifie        │${NC}"
-echo -e "${CYAN}  │     • Envoie vers Elasticsearch                               │${NC}"
-echo -e "${CYAN}  │                                                                │${NC}"
-echo -e "${CYAN}  │   ELASTICSEARCH                                              │${NC}"
-echo -e "${CYAN}  │     • Stocke et indexe les données                            │${NC}"
-echo -e "${CYAN}  │     • Recherche full-text ultra-rapide (< 10ms)               │${NC}"
-echo -e "${CYAN}  │     • Agrégations et statistiques en temps réel               │${NC}"
-echo -e "${CYAN}  │                                                                │${NC}"
-echo -e "${CYAN}  │   KIBANA                                                     │${NC}"
-echo -e "${CYAN}  │     • Dashboards interactifs                                  │${NC}"
-echo -e "${CYAN}  │     • Exploration des données                                 │${NC}"
-echo -e "${CYAN}  │     • Alertes et monitoring                                   │${NC}"
-echo -e "${CYAN}  │                                                                │${NC}"
-echo -e "${CYAN}  └────────────────────────────────────────────────────────────────┘${NC}"
+
 echo ""
 echo -e "${YELLOW}   C'est ce que font Netflix, Uber, GitHub pour surveiller${NC}"
 echo -e "${YELLOW}     leurs millions de serveurs en temps réel !${NC}"

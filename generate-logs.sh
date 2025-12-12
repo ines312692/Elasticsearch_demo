@@ -16,12 +16,7 @@ SERVICES=("api-gateway" "auth-service" "payment-service" "order-service" "databa
 LEVELS=("INFO" "INFO" "INFO" "INFO" "INFO" "WARNING" "WARNING" "ERROR")
 USERS=("USR001" "USR002" "USR003" "USR004" "USR005")
 
-echo ""
-echo -e "${CYAN}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║         🔄 GÉNÉRATEUR DE LOGS EN TEMPS RÉEL                        ║${NC}"
-echo -e "${CYAN}║         Appuyez sur Ctrl+C pour arrêter                            ║${NC}"
-echo -e "${CYAN}╚════════════════════════════════════════════════════════════════════╝${NC}"
-echo ""
+
 
 generate_log() {
     local SERVICE=${SERVICES[$RANDOM % ${#SERVICES[@]}]}

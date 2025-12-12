@@ -21,7 +21,7 @@ Ce projet démontre l'utilisation complète du **ELK Stack** pour le monitoring 
 
 ---
 
-## 🚀 Démarrage rapide
+##  Démarrage rapide
 
 ### Prérequis
 
@@ -56,7 +56,7 @@ curl http://localhost:9200
 
 ---
 
-## 🎬 Lancer la démo
+##  Lancer la démo
 
 ```bash
 # Démo interactive pour la présentation
@@ -146,7 +146,7 @@ elk-stack-demo/
 
 ---
 
-## 🔍 Exemples de requêtes Elasticsearch
+##  Exemples de requêtes Elasticsearch
 
 ### Toutes les erreurs
 ```json
@@ -183,7 +183,7 @@ GET /app-logs-*/_search
 
 ---
 
-## 🧹 Nettoyage
+##  Nettoyage
 
 ```bash
 # Arrêter et supprimer tous les containers et volumes
@@ -207,4 +207,4 @@ Ce projet est créé à des fins éducatives pour le cours de Bases de données 
 
 ---
 
-**Merci pour votre attention ! 🎓**
+**Merci pour votre attention ! **

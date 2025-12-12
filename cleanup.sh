@@ -10,7 +10,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 
 echo ""
-echo -e "${YELLOW}🧹 Arrêt et nettoyage du stack ELK...${NC}"
+echo -e "${YELLOW} Arrêt et nettoyage du stack ELK...${NC}"
 echo ""
 
 docker-compose down -v
