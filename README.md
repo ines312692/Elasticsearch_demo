@@ -88,7 +88,7 @@ Le fichier `logs/application.log` contient **30 logs réalistes** simulant :
 
 ##  Générer des logs en temps réel
 
-Pour impressionner pendant la présentation :
+
 
 ```bash
 # Dans un terminal séparé
@@ -150,22 +150,28 @@ elk-stack-demo/
 
 ### Toutes les erreurs
 ```json
-GET /app-logs-*/_search
-{
-  "query": {
-    "terms": { "level": ["ERROR", "CRITICAL"] }
-  }
+curl -s -X GET "http://localhost:9200/app-logs-*/_search?pretty" \
+-H "Content-Type: application/json" -d '{
+"query": {
+"terms": {
+"level.keyword": ["ERROR", "CRITICAL"]
 }
+},
+"size": 10
+}'
 ```
 
-### Recherche full-text
+### compter les logs par niveau
 ```json
-GET /app-logs-*/_search
-{
-  "query": {
-    "match": { "message": "timeout" }
-  }
+curl -X GET "http://localhost:9200/app-logs-*/_search?pretty" \
+-H "Content-Type: application/json" -d '{
+"size": 0,
+"aggs": {
+"par_niveau": {
+"terms": { "field": "level.keyword" }
 }
+}
+}'
 ```
 
 ### Agrégation par service
@@ -180,7 +186,24 @@ GET /app-logs-*/_search
   }
 }
 ```
+### Rechercher "timeout" dans les messages :
 
+```json
+curl -X GET "http://localhost:9200/app-logs-*/_search?pretty" \
+-H "Content-Type: application/json" -d '{
+"query": {
+"match": {
+"message": "timeout"
+}
+}
+}'
+```
+
+```
+service: "payment-service" AND level: "ERROR"
+
+level: "ERROR"
+```
 ---
 
 ##  Nettoyage
@@ -199,12 +222,4 @@ GET /app-logs-*/_search
 - [Documentation Kibana](https://www.elastic.co/guide/en/kibana/current/index.html)
 - [GitHub Elasticsearch](https://github.com/elastic/elasticsearch)
 
----
 
-##  Licence
-
-Ce projet est créé à des fins éducatives pour le cours de Bases de données avancées à l'ENSIT.
-
----
-
-**Merci pour votre attention ! **

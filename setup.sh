@@ -179,8 +179,6 @@ echo ""
 # TERMINÉ !
 # ─────────────────────────────────────────────────────────────────
 
-service: "payment-service" AND level: "ERROR"
 
-level: "ERROR"
 
 curl -s "localhost:9200/app-logs-*/_count"
